@@ -8,8 +8,9 @@ app.on(
   (): void => {
     app.start(
       (): void => {
+        // llamar a la logica de negocio
         console.log('app started')
-        console.log(app.context)
+        // console.log(app.context)
       },
     )
   },

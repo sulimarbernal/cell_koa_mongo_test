@@ -20,11 +20,13 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.2.0",
+    "node-emoji": "^1.10.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.1",
+    "@types/node-emoji": "^1.8.1",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "eslint": "^5.16.0",

@@ -1,3 +1,5 @@
+import emoji from 'node-emoji'
+import logger from '../utils/logger'
 import { EventEmitter } from 'events'
 import { Module, ModulesLoader } from './modules'
 
@@ -17,6 +19,12 @@ export function makeApp(loadModules: ModulesLoader): Application {
 
   app.context = {}
   app.boot = async (): Promise<void> => {
+    logger.setPrefix('init')
+    logger.info(`Starting at ${new Date().toISOString()}`)
+    console.log('')
+    logger.setPrefix('boot')
+    logger.info(`Booting application ${emoji.get('coffee')}`)
+
     try {
       const modules = await loadModules()
 
@@ -34,17 +42,21 @@ export function makeApp(loadModules: ModulesLoader): Application {
   }
 
   app.start = (callback: Function): void => {
-    // TODO
+    console.log('')
+    logger.setPrefix('run')
+    logger.info(`Application started ${emoji.get('grin')}`)
+
     callback()
   }
 
   app.close = (): void => {
+    logger.setPrefix('shutdown')
     Object.keys(app.context).forEach(
       (moduleName): void => {
         app.context[moduleName].close()
       },
     )
-    console.log('all closed')
+    logger.info(`Application closed ${emoji.get('sleeping')}`)
   }
 
   return app
