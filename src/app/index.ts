@@ -36,7 +36,7 @@ export function makeApp(loadModules: ModulesLoader): Application {
 
       app.emit('application:booted', app)
     } catch (error) {
-      console.log(error)
+      logger.error(error.toString())
       process.exit(1)
     }
   }

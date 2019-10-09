@@ -1,3 +1,4 @@
+import logger from '../../../utils/logger'
 import { ModuleBooter, Module } from '../index'
 
 export const boot: ModuleBooter = (): Module => {
@@ -7,7 +8,7 @@ export const boot: ModuleBooter = (): Module => {
     name,
     context: {},
     close: (): Promise<void> => {
-      console.log(`${name} closed`)
+      logger.info(`${name} closed`)
       return Promise.resolve()
     },
   }

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import { ModuleBooter, Module } from '../index'
+import logger from '../../../utils/logger'
 
 interface ProjectSettings {
   createdAt: string
@@ -23,12 +24,12 @@ export const boot: ModuleBooter = (): Module => {
       name,
       context: settings,
       close: (): Promise<void> => {
-        console.log(`${name} closed`)
+        logger.info(`${name} closed`)
         return Promise.resolve()
       },
     }
   } catch (error) {
-    console.log(error)
+    logger.error(error.toString())
     throw error
   }
 }
