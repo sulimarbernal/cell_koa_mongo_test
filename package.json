@@ -1,5 +1,5 @@
 {
-  "name": "typescript-node-starter",
+  "name": "modules-loader",
   "version": "1.0.0",
   "description": "Simple starter for typescript projects",
   "main": "build/index.js",
@@ -19,7 +19,8 @@
   "author": "Ernesto Fuentes Gómez",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^6.2.0"
+    "dotenv": "^6.2.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

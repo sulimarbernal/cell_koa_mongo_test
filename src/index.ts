@@ -1,11 +1,34 @@
-interface Message {
-  type: 'HELLO' | 'BYE'
-  str: string
-}
+import { makeApp } from './app'
+import { loadModules } from './app/modules'
 
-const simpleMessage: Message = {
-  type: 'HELLO',
-  str: 'WORLD',
-}
+const app = makeApp(loadModules)
+app.boot()
+app.on(
+  'application:booted',
+  (): void => {
+    app.start(
+      (): void => {
+        console.log('app started')
+        console.log(app.context)
+      },
+    )
+  },
+)
 
-console.log(simpleMessage)
+process.on(
+  'uncaughtException',
+  (error): void => {
+    console.error('Exiting program because of [Uncaught Exception Error]', error)
+    process.exit(1)
+  },
+)
+process.on(
+  'unhandledRejection',
+  (error): void => {
+    console.error('Exiting program because of [Unhandled Promise rejection Error]::', error)
+    process.exit(1)
+  },
+)
+
+process.on('SIGINT', app.close)
+process.on('SIGTERM', app.close)
