@@ -1,5 +1,5 @@
 {
-  "name": "modules-loader",
+  "name": "cell",
   "version": "1.0.0",
   "description": "Simple starter for typescript projects",
   "main": "build/index.js",
