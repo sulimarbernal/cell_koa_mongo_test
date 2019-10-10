@@ -5,7 +5,7 @@ import { TransformableInfo } from 'logform'
 describe('Winston logger tests', (): void => {
   beforeEach(
     (): void => {
-      logger.level = 'debug'
+      logger.setLevel('debug')
     },
   )
 
@@ -23,16 +23,16 @@ describe('Winston logger tests', (): void => {
 
   it('should mute the logger', (): void => {
     logger.mute()
-    expect(logger.level).toBe('none')
+    expect(logger.getLevel()).toBe('none')
   })
 
   it('should unmute the logger', (): void => {
-    expect(logger.level).toBe('debug')
+    expect(logger.getLevel()).toBe('debug')
 
     logger.mute()
-    expect(logger.level).toBe('none')
+    expect(logger.getLevel()).toBe('none')
 
     logger.unmute()
-    expect(logger.level).toBe('debug')
+    expect(logger.getLevel()).toBe('debug')
   })
 })

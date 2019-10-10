@@ -6,6 +6,8 @@ interface WinstonLogger {
   setPrefix: (prefix: string) => void
   mute: () => void
   unmute: () => void
+  getLevel: () => string
+  setLevel: (level: 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly') => void
   error: (messages: string[]) => void
   warn: (messages: string | string[]) => void
   info: (...messages: string[]) => void
@@ -39,6 +41,10 @@ function makeLogger(logger: Logger): WinstonLogger {
   let prefix = ''
 
   return {
+    setLevel: (level): void => {
+      logger.level = level
+    },
+    getLevel: (): string => logger.level,
     mute: (): void => {
       logger.level = 'none'
     },
