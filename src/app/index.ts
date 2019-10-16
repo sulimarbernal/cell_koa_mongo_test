@@ -1,10 +1,10 @@
 import emoji from 'node-emoji'
 import logger from '../utils/logger'
 import { EventEmitter } from 'events'
-import { Module, ModulesLoader } from './modules'
+import { Module, ModulesLoader, AModule } from './modules'
 
 interface AppContext {
-  [key: string]: Module
+  [key: string]: Module<AModule>
 }
 
 export interface Application extends EventEmitter {

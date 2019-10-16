@@ -1,5 +1,6 @@
 import { makeApp } from './app'
 import { loadModules } from './app/modules'
+import { serverStarter } from './app/infra/server-routes'
 
 const app = makeApp(loadModules)
 app.boot()
@@ -9,6 +10,10 @@ app.on(
     app.start(
       (): void => {
         // llamar a la logica de negocio
+        const { webserver }: any = app.context['server'].context
+        const info: any = app.context['package-reader'].context
+
+        serverStarter(webserver, info)
         console.log('app started')
         // console.log(app.context)
       },
