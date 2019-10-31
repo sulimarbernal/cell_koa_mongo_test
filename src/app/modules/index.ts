@@ -3,8 +3,9 @@ import fs, { Dirent } from 'fs'
 import logger from '../../utils/logger'
 import { KoaServerModule } from './server/'
 import { ProjectSettingsModule } from './package-reader'
+import { MongoClientDb } from '../infra/persistence/mongo_db/client/MongoClient'
 
-export type AModule = KoaServerModule | ProjectSettingsModule | object
+export type AModule = KoaServerModule | ProjectSettingsModule | MongoClientDb | object
 
 type DirTuple = [string, string]
 

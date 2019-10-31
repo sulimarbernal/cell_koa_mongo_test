@@ -17,7 +17,8 @@
       "console": "integratedTerminal",
       "outFiles": [
         "${workspaceFolder}/build/**/*.js"
-      ]
+      ],
+      "runtimeVersion": "10.16.3",
     },
     {
       "name": "Testing - Debug",
@@ -32,6 +33,7 @@
       ], //you can specify paths to specific tests here
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": null,
+      "runtimeVersion": "10.16.3",
       "envFile": "${workspaceFolder}/.env"
     },
   ]

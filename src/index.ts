@@ -1,6 +1,9 @@
 import { makeApp } from './app'
 import { loadModules } from './app/modules'
 import { serverStarter } from './app/infra/server-routes'
+import { MongoClientDb } from './app/infra/persistence/mongo_db/client/MongoClient'
+import { KoaServerModule } from './app/modules/server'
+import { ProjectSettingsModule } from './app/modules/package-reader'
 
 const app = makeApp(loadModules)
 app.boot()
@@ -10,12 +13,12 @@ app.on(
     app.start(
       (): void => {
         // llamar a la logica de negocio
-        const { webserver }: any = app.context['server'].context
-        const info: any = app.context['package-reader'].context
-
+        const { connect } = app.context['mongoDB'].context as MongoClientDb
+        connect()
+        const { webserver } = app.context['server'].context as KoaServerModule
+        const info = app.context['package-reader'].context as ProjectSettingsModule
         serverStarter(webserver, info)
         console.log('app started')
-        // console.log(app.context)
       },
     )
   },
